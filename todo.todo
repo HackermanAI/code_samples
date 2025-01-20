@@ -1,0 +1,11 @@
+# Header
+
+This is a comment.
+
++ Item 1 done
++ Item 2 done
+    + Subitem 1 done
+    + Subitem 2 done
+    - Subitem 3 to do
+* Item 3 - work in progress
+- Item 4 to do
