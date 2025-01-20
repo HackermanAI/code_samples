@@ -1,23 +1,31 @@
-# This is a TOML document
+# This is a TOML document with various number formats
 
-title = "TOML Example"
+title = "TOML Example with Numbers"
 
 [owner]
 name = "Tom Preston-Werner"
-dob = 1979-05-27T07:32:00-08:00
+dob = 1979-05-27T07:32:00-08:00  # Date-time format
 
 [database]
 enabled = true
-ports = [ 8000, 8001, 8002 ]
-data = [ ["delta", "phi"], [3.14] ]
-temp_targets = { cpu = 79.5, case = 72.0 }
+ports = [ 0b111110100000, 0o1760, 0x1F4 ]  # Binary, octal, and hexadecimal numbers
+data = [ ["delta", "phi"], [3.14, 1e-3, +2.5e+10] ]  # Floats in scientific notation
+temp_targets = { cpu = 79.5, case = 72.0, gpu = -42.3 }  # Decimal floats
 
 [servers]
 
 [servers.alpha]
 ip = "10.0.0.1"
 role = "frontend"
+max_connections = 0xFF  # Hexadecimal integer
 
 [servers.beta]
 ip = "10.0.0.2"
 role = "backend"
+uptime = 1e6  # Scientific notation for float
+load = -0.0125  # Negative float
+
+[special_values]
+positive_inf = +inf
+negative_inf = -inf
+not_a_number = nan  # Special floating-point values
