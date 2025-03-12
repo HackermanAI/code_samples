@@ -6,7 +6,8 @@ import "core:fmt"
 DIRECTIVE :: #config(DIRECTIVE, 20)
 Char_Set :: bit_set['A'..='Z'; u32]
 
-@(cold) main :: proc() {
+@(cold)
+main :: proc() {
     defer fmt.println("Hellope!")
     some_array : [4]int = { 4, 3, 2, 1 }
 
