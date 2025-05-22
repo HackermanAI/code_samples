@@ -1,0 +1,17 @@
+diff --git a/example.txt b/example.txt
+index e69de29..4b825dc 100644
+--- a/example.txt
++++ b/example.txt
+@@ -0,0 +1,6 @@
++#!/bin/bash
++# This is a new script
++echo "Hello world"
++name="Hackerman"
++if [[ $name == "Hackerman" ]]; then
++    echo "Access granted"
+@@ -10,7 +16,9 @@
+-echo "Old line removed"
++echo "Updated line 1"
++echo "Updated line 2"
++
+ # End of file
