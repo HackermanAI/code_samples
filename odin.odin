@@ -24,6 +24,6 @@ main :: proc() {
 }
 
 Structure :: struct {
-    is_true:    bool,
-    text:       string,
+    is_true: bool,
+    text: string,
 }
