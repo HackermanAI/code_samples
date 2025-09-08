@@ -1,5 +1,10 @@
+
 // Comment
-/* Multi-line comment */
+/* 
+    Multi-line 
+    comment
+*/
+
 package main
 
 import "core:fmt"
