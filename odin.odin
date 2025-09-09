@@ -3,6 +3,10 @@
 /* 
     Multi-line 
     comment
+    
+    /*
+        Nested multi-line comment
+    */
 */
 
 package main
