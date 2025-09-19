@@ -1,0 +1,34 @@
+// Comment
+/* Multi-line comment */
+
+use std::mem;
+
+macro_rules! print_char {
+    () => {
+        println!("{}", 'A')
+    };
+}
+
+pub fn main() {
+    println!("Hello, world!");
+
+    let some_array: [i32; 4] = [4, 3, 2, 1];
+    for mut _element in some_array {
+        _element += some_array.len() as i32;
+        _element += mem::size_of_val(&some_array) as i32;
+    }
+
+    let _some_struct = Structure {
+        is_true: true,
+        text: String::from(r"raw string"),
+    };
+
+    print_char!()
+}
+
+#[repr(packed(8))]
+#[allow(dead_code)]
+pub struct Structure {
+    is_true: bool,
+    text: String,
+}
