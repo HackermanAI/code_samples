@@ -1,7 +1,7 @@
 
 {-# LANGUAGE MagicHash #-}
 
-module Hello.World where
+module Main where
 
 import Data.List
 
