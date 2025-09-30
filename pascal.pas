@@ -1,7 +1,8 @@
+
 program SyntaxHighlighterTest;
 
 {$APPTYPE CONSOLE}
-{$MODE OBJFPC}  // For Free Pascal compatibility
+{$MODE OBJFPC} // For Free Pascal compatibility
 
 uses
     SysUtils, Math;
