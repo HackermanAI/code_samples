@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #define length(x) sizeof(x) / sizeof(x[0])
 
-typedef struct
+typedef struct Structure
 {
     bool is_true;
     char text[20];
