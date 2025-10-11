@@ -1,18 +1,18 @@
+
 // Comment
 /* Multi-line comment */
 
 #include <iostream>
 #include <string>
+
 #define length(x) sizeof(x) / sizeof(x[0])
 
-typedef struct
-{
+typedef struct Structure {
     [[deprecated]] bool is_true;
     std::string text;
 } Structure;
 
-int main()
-{
+int main() {
     std::cout << "Hello world!" << std::endl;
     unsigned int some_array[4] = { 4, 3, 2, 1 };
 
@@ -26,4 +26,3 @@ int main()
     some_struct.text = R"(raw string)";
     char some_char = 'c';
 }
-
