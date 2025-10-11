@@ -1,3 +1,4 @@
+
 # Makefile for a simple C project
 
 CC      := gcc
@@ -11,13 +12,13 @@ TARGET  := myapp
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o $@
+    $(CC) $(OBJ) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+    $(CC) $(CFLAGS) -c $< -o $@
 
 debug: CFLAGS += -g -O0
 debug: clean all
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+    rm -f $(OBJ) $(TARGET)
