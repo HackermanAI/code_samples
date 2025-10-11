@@ -6,12 +6,12 @@
 
 typedef struct IntArray {
     int *data;
-    size_t size;
+    size_t _size;
     size_t capacity;
 } IntArray;
 
 void init_array(IntArray *arr) {
-    arr->size = 0;
+    arr->_size = 0;
     arr->capacity = 16;
     arr->data = malloc(arr->capacity * sizeof(int));
     if (!arr->data) {
@@ -23,11 +23,11 @@ void init_array(IntArray *arr) {
 void free_array(IntArray *arr) {
     free(arr->data);
     arr->data = NULL;
-    arr->size = arr->capacity = 0;
+    arr->_size = arr->capacity = 0;
 }
 
 void append(IntArray *arr, int value) {
-    if (arr->size >= arr->capacity) {
+    if (arr->_size >= arr->capacity) {
         arr->capacity *= 2;
         arr->data = realloc(arr->data, arr->capacity * sizeof(int));
         if (!arr->data) {
@@ -35,11 +35,11 @@ void append(IntArray *arr, int value) {
             exit(EXIT_FAILURE);
         }
     }
-    arr->data[arr->size++] = value;
+    arr->data[arr->_size++] = value;
 }
 
 void clear(IntArray *arr) {
-    arr->size = 0;
+    arr->_size = 0;
 }
 
 void collatz(IntArray *sequence, int start) {
@@ -67,29 +67,29 @@ int main(void) {
     collatz(&sequence, start_value);
 
     printf("First four values in sequence for 27:\n");
-    for (size_t i = 0; i < 4 && i < sequence.size; i++) {
+    for (size_t i = 0; i < 4 && i < sequence._size; i++) {
         printf("%d\n", sequence.data[i]);
     }
 
     printf("Last four values in sequence for 27:\n");
-    for (size_t i = sequence.size > 4 ? sequence.size - 4 : 0; i < sequence.size; i++) {
+    for (size_t i = sequence._size > 4 ? sequence._size - 4 : 0; i < sequence._size; i++) {
         printf("%d\n", sequence.data[i]);
     }
 
-    printf("Length of sequence for 27:\n%zu\n", sequence.size);
+    printf("Length of sequence for 27:\n%zu\n", sequence._size);
 
     clear(&sequence);
 
     // Find number under 1,000,000 with longest sequence
-    for (int n = 1; n < 1'000'000; n++) {  // use 1000000 in C if your compiler doesn't allow digit separators
+    for (int n = 1; n < 1'000'000; n++) {
         append(&sequence, n);
         collatz(&sequence, n);
 
-        if (sequence.size > longest_length) {
+        if (sequence._size > longest_length) {
             longest_number = n;
-            longest_length = sequence.size;
+            longest_length = sequence._size;
         }
-
+        
         clear(&sequence);
     }
 
