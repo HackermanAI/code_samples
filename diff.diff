@@ -1,3 +1,4 @@
+
 diff --git a/example.txt b/example.txt
 index e69de29..4b825dc 100644
 --- a/example.txt
@@ -14,4 +15,4 @@ index e69de29..4b825dc 100644
 +echo "Updated line 1"
 +echo "Updated line 2"
 +
- # End of file
+# End of file
