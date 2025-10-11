@@ -245,4 +245,3 @@ main :: proc() {
         rl.EndDrawing()
     }
 }
-
