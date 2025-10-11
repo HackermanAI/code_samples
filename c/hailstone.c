@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
+typedef struct IntArray {
     int *data;
     size_t size;
     size_t capacity;
