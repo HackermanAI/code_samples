@@ -1,3 +1,4 @@
+
 -- Comment
 --[[
     Multiline Comment
@@ -56,5 +57,3 @@ local data = fetchData("https://api.example.com/data")
 if data.success then
     print("Data fetched:", data.data.name)
 end
-
-
