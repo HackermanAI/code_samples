@@ -1,18 +1,25 @@
 
-diff --git a/example.txt b/example.txt
-index e69de29..4b825dc 100644
---- a/example.txt
-+++ b/example.txt
-@@ -0,0 +1,6 @@
-+#!/bin/bash
-+# This is a new script
-+echo "Hello world"
-+name="Hackerman"
-+if [[ $name == "Hackerman" ]]; then
-+    echo "Access granted"
-@@ -10,7 +16,9 @@
--echo "Old line removed"
-+echo "Updated line 1"
-+echo "Updated line 2"
-+
-# End of file
+diff --git a/hackerman-qt5/built_in_lexers.py b/hackerman-qt5/built_in_lexers.py
+index e849e3f0..8e6da8b9 100644
+--- a/hackerman-qt5/built_in_lexers.py
++++ b/hackerman-qt5/built_in_lexers.py
+@@ -136,8 +136,8 @@ class CustomLexerAsm(QsciLexerMASM):
+            6   : "keyword",        # CPU instruction
+            7   : "keyword",        # FPU instruction
+            8   : "type",           # Register
+-           9   : "builtin",       # Directive
+-           10  : "builtin",       # Directive operand
++           9   : "builtin",        # Directive
++           10  : "builtin",        # Directive operand
+            11  : "comment",        # Block comment
+            12  : "string",         # Single-quoted string
+            13  : "error",          # Unclosed string
+@@ -197,7 +197,7 @@ class CustomLexerOdin(QsciLexerOdin):
+            6   : "operator",       # Operator
+            7   : "name",           # Identifier
+            8   : "type",           # Type
+-           9   : "builtin",       # Builtin
++           9   : "builtin",        # Builtin
+            10  : "number",         # Constant
+            11  : "comment",        # Block Comment
+        }
