@@ -10,14 +10,12 @@
 #include <stdbool.h>
 #define length(x) sizeof(x) / sizeof(x[0])
 
-typedef struct Structure
-{
+typedef struct Structure {
     bool is_true;
     char text[20];
 } Structure;
 
-int main()
-{
+int main() {
     printf("Hello World!");
     unsigned int some_array[4] = { 4, 3, 2, 1 };
 
