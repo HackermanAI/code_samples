@@ -16,6 +16,10 @@
     padding: 0;
 }
 
+#start {
+    // id tags
+}
+
 body {
     font-family: "Arial", sans-serif;
     color: var(--main-color);
