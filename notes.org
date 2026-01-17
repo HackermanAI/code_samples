@@ -1,0 +1,76 @@
+
+#+title:    Example Org Mode File
+#+author:   @asyncze
+#+date:     2025-10-14
+
+You can make words *bold*, /italic/, _underlined_, +strike+, =verbatim=, and ~code~.
+
+* Headline 1
+
+The /beauty/ of Hackerman Text *must* be experienced: [[https://hackerman.ai#download]]
+
+** Sub-headline
+
+Quick links to open local files: [[file:test.py][test]]
+Or run command in Terminal: [[sh:ls][ls]]
+
+** TODO
+
+- [X] Index page
+- [X] Quickstart
+- [ ] Features
+- [ ] Releases
+- [X] Install
+- [ ] Manual
+- [ ] Contribute
+
+* Headline 2
+
+Org makes easy things trivial and complex things practical.
+
+:PROPERTIES:
+Hide me.
+:END:
+
+** Tables
+
+| Tool         | Literate programming? | Reproducible Research? | Languages |
+|--------------+-----------------------+------------------------+-----------|
+| Javadoc      | partial               | no                     | Java      |
+| Haskell .lhs | partial               | no                     | Haskell   |
+| noweb        | yes                   | no                     | any       |
+| Sweave       | partial               | yes                    | R         |
+| Org-mode     | yes                   | yes                    | any       |
+
+* Inline code execution
+
+#+begin_src python :var name=Michael
+def main(name):
+    print(f"Welcome to Python in org-mode, { name }!")
+main(name)
+#+end_src
+
+#+RESULTS:
+: Welcome to Python in org-mode, Michael!
+
+#+begin_src lua :var name=Michael
+local function main(name)
+    print("Welcome to Lua in org-mode, " .. name .. "!")
+end
+main(name)
+#+end_src
+
+#+begin_src javascript :var name=Michael
+function main(name){
+    console.log(`Welcome to JavaScript in org-mode, ${name}!`);
+}
+main(name);
+#+end_src
+
+#+begin_src hylang :var name=Michael
+(defn main [name]
+    (print "Welcome to Hy in org-mode," name "!")
+)
+(main name)
+#+end_src
+
