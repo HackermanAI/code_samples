@@ -1,0 +1,30 @@
+
+Here's as toy domain-specific language:
+
+"""
+Language specifications
+
+functions
+    add     : sum all arguments
+    sub     : subtract tail from head
+types
+    int
+    float
+arguments
+    out     : stdin to use previous output as input
+            : stdout to print
+"""
+
+program = """
+Module add 1 2 3 type=float out=stdin
+Module sub stdin 1 2 type=int out=stdout
+"""
+
+Implement this in as few lines of Python as possible.
+> f={'add':lambda *a:sum(a),'sub':lambda a,*b:a-sum(b)}; prev=None
+> for l in program.splitlines():
+>     if not l.strip(): continue
+>     t=l.split(); kv=dict(x.split('=') for x in t if '=' in x); typ={'int':int,'float':float}[kv.get('type','int')]
+>     prev=f[t[1]](*[typ(prev) if x=='stdin' else typ(x) for x in t[2:] if '=' not in x])
+>     if kv.get('out')=='stdout': print(prev)
+
