@@ -1,0 +1,123 @@
+
+
+using python, implement a simple n-body simulation, output to appropriate viz lib
+> Save as nbody_matplotlib.py and run with:  python nbody_matplotlib.py
+> (Requires: numpy, matplotlib)
+> 
+> import numpy as np
+> import matplotlib.pyplot as plt
+> from matplotlib.animation import FuncAnimation
+> 
+> def accelerations(pos, m, G=1.0, softening=0.05):
+>     """
+>     pos: (N,2)
+>     m:   (N,)
+>     returns acc: (N,2)
+>     """
+>     # Pairwise displacement: r_i - r_j
+>     d = pos[:, None, :] - pos[None, :, :]              # (N,N,2)
+>     dist2 = np.sum(d * d, axis=2) + softening**2       # (N,N)
+>     inv_dist3 = dist2 ** (-1.5)                        # (N,N)
+> 
+>     # No self-force
+>     np.fill_diagonal(inv_dist3, 0.0)
+> 
+>     # a_i = -G * sum_j m_j * (r_i - r_j) / |r_i-r_j|^3
+>     acc = -G * np.sum(d * inv_dist3[:, :, None] * m[None, :, None], axis=1)
+>     return acc
+> 
+> def velocity_verlet_step(pos, vel, m, dt, G=1.0, softening=0.05):
+>     acc = accelerations(pos, m, G=G, softening=softening)
+>     vel = vel + 0.5 * acc * dt
+>     pos = pos + vel * dt
+>     acc_new = accelerations(pos, m, G=G, softening=softening)
+>     vel = vel + 0.5 * acc_new * dt
+>     return pos, vel
+> 
+> def main():
+>     rng = np.random.default_rng(2)
+> 
+>     # Simulation parameters
+>     N = 30
+>     G = 1.0
+>     softening = 0.05
+>     dt = 0.01
+>     substeps_per_frame = 5
+> 
+>     # Initialize masses (positive)
+>     m = rng.uniform(0.5, 2.0, size=N)
+> 
+>     # Initial positions in a disk
+>     r = np.sqrt(rng.random(N)) * 2.5
+>     theta = rng.uniform(0, 2*np.pi, size=N)
+>     pos = np.column_stack([r*np.cos(theta), r*np.sin(theta)])
+> 
+>     # Initial velocities: roughly circular about origin, plus noise
+>     # v = omega x r (perpendicular); pick omega based on typical enclosed mass scale
+>     # This is not exact, but helps avoid immediate collapse/escape for a demo.
+>     omega = 0.7
+>     vel = omega * np.column_stack([-pos[:, 1], pos[:, 0]])
+>     vel += rng.normal(scale=0.15, size=(N, 2))
+> 
+>     # Center-of-mass frame
+>     v_com = np.sum(vel * m[:, None], axis=0) / np.sum(m)
+>     x_com = np.sum(pos * m[:, None], axis=0) / np.sum(m)
+>     vel -= v_com
+>     pos -= x_com
+> 
+>     # Visualization setup
+>     fig, ax = plt.subplots(figsize=(7, 7))
+>     ax.set_aspect("equal", adjustable="box")
+>     ax.set_facecolor("black")
+> 
+>     # Plot bounds
+>     lim = 4.0
+>     ax.set_xlim(-lim, lim)
+>     ax.set_ylim(-lim, lim)
+> 
+>     # Scatter for bodies
+>     sizes = 30.0 * (m / np.mean(m))**1.2
+>     scat = ax.scatter(pos[:, 0], pos[:, 1], s=sizes, c="white", edgecolors="none")
+> 
+>     # Simple trails
+>     trail_len = 40
+>     trails = np.repeat(pos[None, :, :], trail_len, axis=0)  # (trail_len, N, 2)
+>     lines = [ax.plot([], [], lw=1.0, alpha=0.35, color="cyan")[0] for _ in range(N)]
+> 
+>     # HUD text
+>     info = ax.text(0.02, 0.98, "", transform=ax.transAxes, va="top", ha="left",
+>                    color="white", fontsize=10)
+> 
+>     t = 0.0
+> 
+>     def update(frame):
+>         nonlocal pos, vel, trails, t
+> 
+>         for _ in range(substeps_per_frame):
+>             pos, vel = velocity_verlet_step(pos, vel, m, dt, G=G, softening=softening)
+>             t += dt
+> 
+>         # Update trails
+>         trails = np.roll(trails, shift=-1, axis=0)
+>         trails[-1, :, :] = pos
+> 
+>         # Update scatter
+>         scat.set_offsets(pos)
+> 
+>         # Update line trails
+>         for i, ln in enumerate(lines):
+>             ln.set_data(trails[:, i, 0], trails[:, i, 1])
+> 
+>         # Display time
+>         info.set_text(f"N={N}   t={t:.2f}   dt={dt}   substeps/frame={substeps_per_frame}")
+> 
+>         return [scat, info, *lines]
+> 
+>     anim = FuncAnimation(fig, update, interval=33, blit=True)
+>     plt.show()
+> 
+> if __name__ == "__main__":
+>     main()
+
+
+
