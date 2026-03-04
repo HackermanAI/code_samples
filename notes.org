@@ -50,7 +50,7 @@ def main(name):
 main(name)
 #+end_src
 
-#+RESULTS:
+#+RESULTS: True
 : Welcome to Python in org-mode, Michael!
 
 #+begin_src lua :var name=Michael
@@ -60,6 +60,9 @@ end
 main(name)
 #+end_src
 
+#+RESULTS: True
+: Welcome to Lua in org-mode, Michael!
+
 #+begin_src javascript :var name=Michael
 function main(name){
     console.log(`Welcome to JavaScript in org-mode, ${name}!`);
@@ -67,10 +70,16 @@ function main(name){
 main(name);
 #+end_src
 
+#+RESULTS: True
+: Welcome to JavaScript in org-mode, Michael!
+
 #+begin_src hylang :var name=Michael
 (defn main [name]
     (print "Welcome to Hy in org-mode," name "!")
 )
 (main name)
 #+end_src
+
+#+RESULTS: True
+: Welcome to Hy in org-mode, Michael !
 
